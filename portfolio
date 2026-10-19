@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Areej — UI/UX Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F5EFE6;
+    --sand:#E8DDD0;
+    --warm-mid:#C9B99A;
+    --umber:#8B6F47;
+    --deep-umber:#5C4A2A;
+    --charcoal:#2C1F0E;
+    --terracotta:#A0522D;
+    --muted:#9C8B76;
+    --divider: rgba(92,74,42,0.15);
+    --max: 720px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--charcoal);
+    font-family:'Inter', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--terracotta); color:var(--cream); }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width: var(--max);
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  header.top{
+    padding:28px 0;
+    border-bottom:1px solid var(--divider);
+  }
+  header.top .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .mark{
+    font-family:'Playfair Display', serif;
+    font-weight:600;
+    font-size:19px;
+    letter-spacing:0.01em;
+  }
+  nav a{
+    text-decoration:none;
+    font-size:14px;
+    color:var(--umber);
+    margin-left:22px;
+  }
+  nav a:hover{ color:var(--terracotta); }
+
+  /* HERO */
+  .hero{
+    padding:88px 0 72px;
+  }
+  .hero .kicker{
+    font-size:15px;
+    color:var(--umber);
+    margin:0 0 18px;
+  }
+  .hero h1{
+    font-family:'Playfair Display', serif;
+    font-weight:500;
+    font-size:clamp(34px, 6vw, 52px);
+    line-height:1.18;
+    margin:0 0 26px;
+    max-width: 15ch;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--terracotta);
+  }
+  .hero p.lede{
+    max-width:52ch;
+    font-size:18px;
+    color:#4a3a22;
+    margin:0 0 34px;
+  }
+  .hero .roles{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .roles span{
+    font-size:13px;
+    padding:7px 13px;
+    border:1px solid var(--divider);
+    border-radius:100px;
+    color:var(--deep-umber);
+    background: rgba(232,221,208,0.5);
+  }
+
+  /* SECTION LABELS */
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:38px;
+    padding-top:64px;
+  }
+  .section-head h2{
+    font-family:'Playfair Display', serif;
+    font-weight:500;
+    font-size:28px;
+    margin:0;
+  }
+  .section-head .count{
+    font-size:14px;
+    color:var(--muted);
+  }
+
+  /* CASE STUDIES */
+  .case{
+    padding:44px 0;
+    border-top:1px solid var(--divider);
+  }
+  .case:first-of-type{ border-top:none; }
+  .case-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:24px;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+  }
+  .case-name{
+    font-family:'Playfair Display', serif;
+    font-weight:500;
+    font-size:30px;
+    margin:0 0 6px;
+  }
+  .case-role{
+    font-size:14px;
+    color:var(--umber);
+  }
+  .case-tag{
+    font-size:12.5px;
+    color:var(--deep-umber);
+    background:var(--sand);
+    padding:6px 12px;
+    border-radius:100px;
+    white-space:nowrap;
+  }
+  .case p{
+    max-width:60ch;
+    margin:0 0 18px;
+    color:#3a2c15;
+  }
+  .case h4{
+    font-size:13px;
+    text-transform:none;
+    color:var(--terracotta);
+    margin:26px 0 10px;
+    font-weight:600;
+  }
+  .case ul{
+    margin:0 0 18px;
+    padding-left:20px;
+  }
+  .case li{
+    margin-bottom:8px;
+    color:#3a2c15;
+  }
+
+  /* swatch strip - real Muqahhar palette */
+  .swatches{
+    display:flex;
+    border-radius:10px;
+    overflow:hidden;
+    margin:22px 0 8px;
+    border:1px solid var(--divider);
+  }
+  .swatch{
+    flex:1;
+    height:56px;
+    position:relative;
+  }
+  .swatch-label{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    font-size:12px;
+    color:var(--muted);
+    margin-bottom:26px;
+  }
+
+  /* wireframe illustration for muqahhar - masonry mock */
+  .device{
+    border:1px solid var(--divider);
+    border-radius:14px;
+    background:var(--sand);
+    padding:16px;
+    margin:22px 0 30px;
+  }
+  .device-bar{
+    display:flex;
+    gap:6px;
+    margin-bottom:14px;
+  }
+  .device-bar span{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--warm-mid);
+  }
+  .masonry{
+    columns:3;
+    column-gap:8px;
+  }
+  .masonry div{
+    background:var(--cream);
+    border:1px solid var(--divider);
+    border-radius:6px;
+    margin-bottom:8px;
+    break-inside:avoid;
+  }
+  .masonry div:nth-child(1){height:70px;}
+  .masonry div:nth-child(2){height:44px;}
+  .masonry div:nth-child(3){height:58px;}
+  .masonry div:nth-child(4){height:50px;}
+  .masonry div:nth-child(5){height:80px;}
+  .masonry div:nth-child(6){height:40px;}
+  .masonry div:nth-child(7){height:60px;}
+  .masonry div:nth-child(8){height:46px;}
+  .masonry div:nth-child(9){height:66px;}
+
+  /* amanat trust diagram */
+  .trust-flow{
+    display:flex;
+    align-items:center;
+    gap:0;
+    margin:22px 0 30px;
+    flex-wrap:wrap;
+  }
+  .trust-node{
+    border:1px solid var(--divider);
+    background:var(--sand);
+    border-radius:10px;
+    padding:16px 18px;
+    font-size:13px;
+    color:var(--deep-umber);
+    min-width:120px;
+    text-align:center;
+  }
+  .trust-arrow{
+    color:var(--warm-mid);
+    padding:0 10px;
+    font-size:18px;
+  }
+
+  /* ABOUT */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:28px;
+  }
+  .about-block h4{
+    font-size:13px;
+    color:var(--terracotta);
+    margin:0 0 10px;
+    font-weight:600;
+  }
+  .about-block p, .about-block li{
+    font-size:15px;
+    color:#3a2c15;
+    margin:0;
+  }
+  .about-block ul{
+    padding-left:18px;
+    margin:0;
+  }
+  .about-block li{ margin-bottom:6px; }
+
+  /* CONTACT / FOOTER */
+  footer{
+    border-top:1px solid var(--divider);
+    margin-top:70px;
+    padding:44px 0 60px;
+  }
+  footer h2{
+    font-family:'Playfair Display', serif;
+    font-weight:500;
+    font-size:26px;
+    margin:0 0 14px;
+  }
+  footer p{
+    max-width:48ch;
+    color:#4a3a22;
+    margin:0 0 22px;
+  }
+  .contact-links{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .contact-links a{
+    text-decoration:none;
+    font-size:14px;
+    padding:10px 18px;
+    border:1px solid var(--deep-umber);
+    border-radius:100px;
+    color:var(--deep-umber);
+    transition: background .15s ease, color .15s ease;
+  }
+  .contact-links a:hover{
+    background:var(--deep-umber);
+    color:var(--cream);
+  }
+  .fine{
+    margin-top:40px;
+    font-size:12.5px;
+    color:var(--muted);
+  }
+
+
+  /* embedded prototype */
+  .proto{
+    width:min(1040px, calc(100vw - 32px));
+    position:relative;
+    left:50%;
+    transform:translateX(-50%);
+    margin:22px 0 10px;
+    border:1px solid var(--divider);
+    border-radius:14px;
+    background:var(--sand);
+    overflow:hidden;
+  }
+  .proto-bar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 14px;
+  }
+  .proto-bar .dots{ display:flex; gap:6px; }
+  .proto-bar .dots span{ width:7px;height:7px;border-radius:50%;background:var(--warm-mid); }
+  .proto-bar button{
+    font:inherit; font-size:12.5px;
+    background:none; border:1px solid var(--deep-umber);
+    color:var(--deep-umber); border-radius:100px;
+    padding:5px 13px; cursor:pointer;
+  }
+  .proto-bar button:hover{ background:var(--deep-umber); color:var(--cream); }
+  .proto iframe{
+    display:block; width:100%; height:640px; border:0; background:#fdfcfa;
+  }
+  .proto-note{ font-size:13px; color:var(--muted); margin:0 0 26px; }
+  @media (max-width:600px){ .proto iframe{ height:520px; } }
+
+  @media (max-width:600px){
+    .about-grid{ grid-template-columns:1fr; }
+    .hero{ padding:56px 0 48px; }
+    nav a{ margin-left:14px; font-size:13px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="mark">Areej Fatima</div>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#writing">Writing</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="kicker">UI/UX Designer</p>
+    <h1>I design products people trust <em>before they read a word.</em></h1>
+    <p class="lede">Computer Science student at IBA Karachi, currently leading UI/UX for Muqahhar and shaping the product design of Amanat. I work at the intersection of visual craft and the unglamorous decisions — verification flows, empty states, pricing logic — that make a product usable.</p>
+    <div class="roles">
+      <span>Product Design</span>
+      <span>Design Systems</span>
+      <span>Prototyping</span>
+      <span>0→1 Product</span>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <span class="count">Case study</span>
+    </div>
+
+    <!-- CASE STUDY 2: AMANAT -->
+    <article class="case">
+      <div class="case-top">
+        <div>
+          <h3 class="case-name">Amanat</h3>
+          <div class="case-role">Product &amp; UI Design — 0→1 product</div>
+        </div>
+        <span class="case-tag">P2P rental marketplace</span>
+      </div>
+
+      <p>Amanat is a peer-to-peer rental marketplace for Pakistan — think "Airbnb for things" — built around the core problem that makes renting between strangers hard: trust.</p>
+
+      <h4>The problem</h4>
+      <p>Peer-to-peer rental only works if both sides believe the other party is real and accountable. Without a national identity layer built in from the start, that trust never forms and the marketplace never gets liquidity.</p>
+
+      <h4>What I designed</h4>
+      <p>I designed the trust layer as the spine of the product, not an add-on — CNIC-based identity verification, security deposits, and space for insurance partnerships built into the rental flow itself.</p>
+
+      <div class="trust-flow">
+        <div class="trust-node">CNIC verification</div>
+        <div class="trust-arrow">→</div>
+        <div class="trust-node">Listing &amp; deposit</div>
+        <div class="trust-arrow">→</div>
+        <div class="trust-node">Insured handoff</div>
+      </div>
+
+
+      <h4>The interface</h4>
+      <p>A working front-end prototype. Browse and filter listings, open an item to see its security deposit and booking panel, then scroll through how the rental flow works, the trust features, and the list-an-item page. Everything below is clickable.</p>
+      <div class="proto">
+        <div class="proto-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <button type="button" onclick="openProto()">Open full screen</button>
+        </div>
+        <iframe id="protoFrame" title="Amanat front-end prototype" sandbox="allow-scripts allow-popups" loading="lazy" srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>Amanat — Peer-to-Peer Rental Marketplace</title>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root {
+    --sage: #7a9e7e;
+    --sage-light: #b5cdb8;
+    --sage-pale: #e8f0e9;
+    --peach: #e8b89a;
+    --peach-light: #f5d9c8;
+    --peach-pale: #fdf0e8;
+    --ink: #1a2320;
+    --ink-soft: #3d4f45;
+    --muted: #7a8c82;
+    --white: #fdfcfa;
+    --card-bg: #ffffff;
+    --border: #dde8de;
+    --red: #e05c5c;
+    --gold: #c9a84c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 40px;
+    background: rgba(253,252,250,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 600;
+    color: var(--ink); letter-spacing: 3px; text-transform: uppercase;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo .dot { width: 8px; height: 8px; background: var(--sage); border-radius: 50%; }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    text-decoration: none; color: var(--ink-soft);
+    font-size: 14px; font-weight: 500; cursor: pointer;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--sage); }
+  .nav-cta {
+    background: var(--ink); color: var(--white) !important;
+    padding: 10px 22px; border-radius: 100px;
+    font-size: 13px !important; font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--sage) !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 120px 40px 80px;
+    background: linear-gradient(160deg, var(--sage-pale) 0%, var(--white) 55%, var(--peach-pale) 100%);
+    position: relative; overflow: hidden;
+  }
+  .hero-bg-circle {
+    position: absolute; border-radius: 50%;
+    opacity: 0.18; pointer-events: none;
+  }
+  .hero-bg-circle.c1 { width: 500px; height: 500px; background: var(--sage); top: -100px; right: -100px; }
+  .hero-bg-circle.c2 { width: 300px; height: 300px; background: var(--peach); bottom: -50px; left: -80px; }
+
+  .hero-inner {
+    max-width: 1100px; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--sage-pale); border: 1px solid var(--sage-light);
+    padding: 6px 14px; border-radius: 100px; margin-bottom: 24px;
+    font-size: 12px; font-weight: 500; color: var(--sage);
+    letter-spacing: 0.5px; text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 5vw, 64px);
+    line-height: 1.08; font-weight: 600;
+    color: var(--ink); margin-bottom: 20px;
+  }
+  .hero h1 em { font-style: italic; color: var(--sage); }
+  .hero p {
+    font-size: 17px; color: var(--ink-soft); line-height: 1.7;
+    margin-bottom: 36px; font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--ink); color: var(--white);
+    padding: 14px 28px; border-radius: 100px;
+    font-size: 14px; font-weight: 600; border: none;
+    cursor: pointer; transition: all 0.25s;
+    letter-spacing: 0.3px;
+  }
+  .btn-primary:hover { background: var(--sage); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: var(--ink);
+    padding: 14px 28px; border-radius: 100px;
+    font-size: 14px; font-weight: 500; border: 1.5px solid var(--border);
+    cursor: pointer; transition: all 0.25s;
+  }
+  .btn-outline:hover { border-color: var(--sage); color: var(--sage); }
+
+  /* Hero Search */
+  .hero-search {
+    background: var(--card-bg);
+    border-radius: 20px; padding: 28px;
+    box-shadow: 0 12px 50px rgba(26,35,32,0.1);
+    border: 1px solid var(--border);
+    animation: floatIn 0.8s ease 0.3s both;
+  }
+  @keyframes floatIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .search-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+  }
+  .search-tabs {
+    display: flex; gap: 6px; margin-bottom: 18px;
+  }
+  .search-tab {
+    padding: 7px 16px; border-radius: 100px;
+    font-size: 13px; font-weight: 500;
+    cursor: pointer; border: none;
+    transition: all 0.2s;
+    background: var(--sage-pale); color: var(--sage);
+  }
+  .search-tab.active { background: var(--sage); color: white; }
+  .search-row { display: flex; gap: 10px; margin-bottom: 12px; }
+  .search-input {
+    flex: 1; padding: 12px 16px; border-radius: 12px;
+    border: 1.5px solid var(--border); font-size: 14px;
+    font-family: 'DM Sans', sans-serif; color: var(--ink);
+    background: var(--sage-pale); outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-input:focus { border-color: var(--sage); }
+  .search-btn {
+    background: var(--sage); color: white;
+    border: none; border-radius: 12px;
+    padding: 12px 20px; font-size: 14px;
+    cursor: pointer; font-weight: 600;
+    transition: background 0.2s;
+  }
+  .search-btn:hover { background: var(--ink); }
+  .search-cats {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .search-cat {
+    padding: 6px 12px; border-radius: 8px;
+    background: var(--peach-pale); color: var(--ink-soft);
+    font-size: 12px; cursor: pointer; font-weight: 500;
+    transition: all 0.2s; border: 1px solid transparent;
+  }
+  .search-cat:hover { border-color: var(--peach); background: var(--peach-light); }
+
+  /* TRUST STRIP */
+  .trust-strip {
+    background: var(--ink); color: var(--white);
+    padding: 18px 40px;
+    display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 400; opacity: 0.85;
+  }
+  .trust-icon { font-size: 18px; }
+
+  /* SECTION */
+  section { padding: 90px 40px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--sage);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 48px); font-weight: 600;
+    line-height: 1.15; margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 16px; color: var(--muted); line-height: 1.6;
+    max-width: 520px; font-weight: 300; margin-bottom: 48px;
+  }
+
+  /* LISTINGS */
+  .listings-section { background: var(--white); }
+  .filter-bar {
+    display: flex; gap: 10px; margin-bottom: 36px; flex-wrap: wrap;
+  }
+  .filter-pill {
+    padding: 8px 18px; border-radius: 100px; border: 1.5px solid var(--border);
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    background: white; color: var(--ink-soft); transition: all 0.2s;
+  }
+  .filter-pill.active, .filter-pill:hover {
+    background: var(--sage); color: white; border-color: var(--sage);
+  }
+  .listings-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .listing-card {
+    background: var(--card-bg); border-radius: 18px;
+    border: 1px solid var(--border);
+    overflow: hidden; cursor: pointer;
+    transition: all 0.3s; position: relative;
+  }
+  .listing-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(26,35,32,0.1); }
+  .listing-img {
+    height: 180px; display: flex; align-items: center; justify-content: center;
+    font-size: 56px; position: relative;
+  }
+  .listing-badge {
+    position: absolute; top: 12px; left: 12px;
+    padding: 4px 10px; border-radius: 100px;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.5px; text-transform: uppercase;
+  }
+  .badge-verified { background: var(--sage); color: white; }
+  .badge-popular { background: var(--peach); color: var(--ink); }
+  .listing-body { padding: 16px; }
+  .listing-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .listing-owner {
+    font-size: 12px; color: var(--muted); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .owner-dot { width: 6px; height: 6px; background: var(--sage); border-radius: 50%; }
+  .listing-footer {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .listing-price {
+    font-size: 18px; font-weight: 600; color: var(--sage);
+  }
+  .listing-price span { font-size: 12px; color: var(--muted); font-weight: 400; }
+  .listing-rating {
+    font-size: 13px; color: var(--ink-soft);
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  /* HOW IT WORKS */
+  .how-section { background: var(--sage-pale); }
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px; position: relative;
+  }
+  .step-card {
+    background: white; border-radius: 20px; padding: 28px 24px;
+    position: relative; overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.3s;
+  }
+  .step-card:hover { transform: translateY(-4px); }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px; font-weight: 600;
+    color: var(--sage-pale); position: absolute;
+    top: 10px; right: 16px; line-height: 1;
+  }
+  .step-icon { font-size: 32px; margin-bottom: 14px; }
+  .step-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .step-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* TRUST FEATURES */
+  .trust-section { background: var(--white); }
+  .trust-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .trust-card {
+    border-radius: 20px; padding: 32px;
+    border: 1.5px solid var(--border);
+    transition: all 0.3s; cursor: pointer;
+  }
+  .trust-card:hover { border-color: var(--sage); box-shadow: 0 8px 30px rgba(122,158,126,0.15); }
+  .trust-card.featured {
+    background: var(--ink); color: white;
+    border-color: var(--ink);
+    grid-column: span 2;
+    display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px;
+  }
+  .trust-card-icon { font-size: 36px; margin-bottom: 16px; }
+  .trust-card-title { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
+  .trust-card-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+  .trust-card.featured .trust-card-desc { color: rgba(255,255,255,0.6); }
+  .trust-stats { display: flex; gap: 32px; }
+  .trust-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 600; color: var(--sage-light);
+  }
+  .trust-stat-label { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+
+  /* LISTING MODAL */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(26,35,32,0.6); backdrop-filter: blur(4px);
+    z-index: 200; align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: white; border-radius: 24px; max-width: 560px; width: 100%;
+    overflow: hidden; animation: modalIn 0.3s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.95) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .modal-header { padding: 28px 28px 0; }
+  .modal-emoji { font-size: 64px; margin-bottom: 16px; display: block; }
+  .modal-title { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .modal-owner { font-size: 14px; color: var(--muted); }
+  .modal-body { padding: 20px 28px 28px; }
+  .modal-price-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    margin: 16px 0;
+  }
+  .modal-price-big { font-size: 28px; font-weight: 700; color: var(--sage); }
+  .modal-price-big small { font-size: 14px; color: var(--muted); font-weight: 400; }
+  .modal-features { margin-bottom: 20px; }
+  .modal-feature {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 0; font-size: 14px; color: var(--ink-soft);
+  }
+  .modal-feature-icon { color: var(--sage); font-size: 16px; }
+  .date-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .date-input-wrap { display: flex; flex-direction: column; gap: 6px; }
+  .date-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .date-input {
+    padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 10px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none;
+    transition: border-color 0.2s;
+  }
+  .date-input:focus { border-color: var(--sage); }
+  .modal-footer { display: flex; gap: 10px; }
+  .modal-close {
+    padding: 14px 20px; border-radius: 12px; border: 1.5px solid var(--border);
+    font-size: 14px; cursor: pointer; background: white; color: var(--ink);
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+  }
+  .modal-book {
+    flex: 1; padding: 14px; border-radius: 12px; border: none;
+    background: var(--sage); color: white; font-size: 14px;
+    font-weight: 600; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: background 0.2s;
+  }
+  .modal-book:hover { background: var(--ink); }
+
+  /* LIST ITEM FORM */
+  .list-section { background: var(--peach-pale); }
+  .list-form {
+    background: white; border-radius: 24px; padding: 40px;
+    border: 1px solid var(--border); max-width: 600px;
+  }
+  .form-group { margin-bottom: 20px; }
+  .form-label { font-size: 13px; font-weight: 600; color: var(--ink-soft); margin-bottom: 8px; display: block; }
+  .form-input, .form-select, .form-textarea {
+    width: 100%; padding: 12px 16px; border-radius: 12px;
+    border: 1.5px solid var(--border); font-size: 14px;
+    font-family: 'DM Sans', sans-serif; color: var(--ink);
+    outline: none; transition: border-color 0.2s; background: var(--sage-pale);
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--sage); }
+  .form-textarea { resize: vertical; min-height: 90px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .upload-zone {
+    border: 2px dashed var(--sage-light); border-radius: 14px;
+    padding: 30px; text-align: center; cursor: pointer;
+    color: var(--muted); font-size: 14px; transition: all 0.2s;
+  }
+  .upload-zone:hover { border-color: var(--sage); background: var(--sage-pale); }
+  .upload-zone span { font-size: 28px; display: block; margin-bottom: 8px; }
+  .id-verify-box {
+    background: var(--sage-pale); border-radius: 14px; padding: 20px;
+    display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
+    border: 1px solid var(--sage-light);
+  }
+  .id-verify-icon { font-size: 28px; }
+  .id-verify-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .id-verify-sub { font-size: 13px; color: var(--muted); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); color: white;
+    padding: 60px 40px 30px;
+  }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 14px; color: white;
+  }
+  .footer-tagline { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; max-width: 240px; }
+  .footer-col-title { font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
+  .footer-link {
+    display: block; font-size: 14px; color: rgba(255,255,255,0.65);
+    margin-bottom: 10px; text-decoration: none; cursor: pointer;
+    transition: color 0.2s;
+  }
+  .footer-link:hover { color: var(--sage-light); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: rgba(255,255,255,0.3);
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 30px; right: 30px; z-index: 300;
+    background: var(--ink); color: white;
+    padding: 14px 20px; border-radius: 14px;
+    font-size: 14px; font-weight: 500;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    transform: translateY(80px); opacity: 0;
+    transition: all 0.4s cubic-bezier(.175,.885,.32,1.275);
+    display: flex; align-items: center; gap: 10px;
+    pointer-events: none;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .anim { animation: fadeInUp 0.6s ease both; }
+  .anim-d1 { animation-delay: 0.1s; }
+  .anim-d2 { animation-delay: 0.2s; }
+  .anim-d3 { animation-delay: 0.3s; }
+  .anim-d4 { animation-delay: 0.4s; }
+
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 20px 60px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    section { padding: 60px 20px; }
+    .trust-grid { grid-template-columns: 1fr; }
+    .trust-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class=&quot;nav-logo&quot;><div class=&quot;dot&quot;></div>Amanat</div>
+  <div class=&quot;nav-links&quot;>
+    <a onclick=&quot;scrollTo('listings')&quot;>Browse</a>
+    <a onclick=&quot;scrollTo('how')&quot;>How it Works</a>
+    <a onclick=&quot;scrollTo('list')&quot;>List an Item</a>
+    <a onclick=&quot;scrollTo('list')&quot; class=&quot;nav-cta&quot;>Start Renting</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class=&quot;hero&quot; id=&quot;home&quot;>
+  <div class=&quot;hero-bg-circle c1&quot;></div>
+  <div class=&quot;hero-bg-circle c2&quot;></div>
+  <div class=&quot;hero-inner&quot;>
+    <div class=&quot;anim anim-d1&quot;>
+      <div class=&quot;hero-badge&quot;>🇵🇰 Made for Pakistan</div>
+      <h1>Rent <em>anything.</em><br>Own the future.</h1>
+      <p>Access expensive lifestyle and professional assets without buying them. A secure, peer-to-peer rental marketplace built on trust.</p>
+      <div class=&quot;hero-actions&quot;>
+        <button class=&quot;btn-primary&quot; onclick=&quot;scrollTo('listings')&quot;>Browse Listings</button>
+        <button class=&quot;btn-outline&quot; onclick=&quot;scrollTo('list')&quot;>List Your Item</button>
+      </div>
+    </div>
+    <div class=&quot;hero-search anim anim-d2&quot;>
+      <div class=&quot;search-label&quot;>What are you looking for?</div>
+      <div class=&quot;search-tabs&quot;>
+        <button class=&quot;search-tab active&quot; onclick=&quot;setTab(this)&quot;>Rent</button>
+        <button class=&quot;search-tab&quot; onclick=&quot;setTab(this)&quot;>Lend</button>
+      </div>
+      <div class=&quot;search-row&quot;>
+        <input class=&quot;search-input&quot; placeholder=&quot;e.g. DSLR camera, camping gear...&quot; id=&quot;searchInput&quot;>
+        <button class=&quot;search-btn&quot; onclick=&quot;doSearch()&quot;>Search</button>
+      </div>
+      <div class=&quot;search-cats&quot;>
+        <span class=&quot;search-cat&quot; onclick=&quot;filterCat('Camera')&quot;>📷 Camera</span>
+        <span class=&quot;search-cat&quot; onclick=&quot;filterCat('Tools')&quot;>🔧 Tools</span>
+        <span class=&quot;search-cat&quot; onclick=&quot;filterCat('Camping')&quot;>⛺ Camping</span>
+        <span class=&quot;search-cat&quot; onclick=&quot;filterCat('Electronics')&quot;>💻 Electronics</span>
+        <span class=&quot;search-cat&quot; onclick=&quot;filterCat('Fashion')&quot;>👗 Fashion</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST STRIP -->
+<div class=&quot;trust-strip&quot;>
+  <div class=&quot;trust-item&quot;><span class=&quot;trust-icon&quot;>🪪</span> NADRA-Verified IDs</div>
+  <div class=&quot;trust-item&quot;><span class=&quot;trust-icon&quot;>🔒</span> Escrow Payments</div>
+  <div class=&quot;trust-item&quot;><span class=&quot;trust-icon&quot;>📸</span> Digital Condition Reports</div>
+  <div class=&quot;trust-item&quot;><span class=&quot;trust-icon&quot;>⭐</span> Community Reviews</div>
+</div>
+
+<!-- LISTINGS -->
+<section class=&quot;listings-section&quot; id=&quot;listings&quot;>
+  <div class=&quot;section-inner&quot;>
+    <p class=&quot;section-label anim&quot;>Featured Listings</p>
+    <h2 class=&quot;section-title anim anim-d1&quot;>Rent from people<br>near you</h2>
+    <div class=&quot;filter-bar&quot; id=&quot;filterBar&quot;>
+      <button class=&quot;filter-pill active&quot; onclick=&quot;filterListings(this, 'all')&quot;>All</button>
+      <button class=&quot;filter-pill&quot; onclick=&quot;filterListings(this, 'Camera')&quot;>📷 Camera &amp; Photo</button>
+      <button class=&quot;filter-pill&quot; onclick=&quot;filterListings(this, 'Tools')&quot;>🔧 Tools</button>
+      <button class=&quot;filter-pill&quot; onclick=&quot;filterListings(this, 'Camping')&quot;>⛺ Camping</button>
+      <button class=&quot;filter-pill&quot; onclick=&quot;filterListings(this, 'Electronics')&quot;>💻 Electronics</button>
+      <button class=&quot;filter-pill&quot; onclick=&quot;filterListings(this, 'Fashion')&quot;>👗 Fashion</button>
+    </div>
+    <div class=&quot;listings-grid&quot; id=&quot;listingsGrid&quot;></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class=&quot;how-section&quot; id=&quot;how&quot;>
+  <div class=&quot;section-inner&quot;>
+    <p class=&quot;section-label&quot;>Simple &amp; Safe</p>
+    <h2 class=&quot;section-title&quot;>How Amanat works</h2>
+    <p class=&quot;section-sub&quot;>From browsing to borrowing in minutes — with trust built into every step.</p>
+    <div class=&quot;steps-grid&quot;>
+      <div class=&quot;step-card&quot;>
+        <span class=&quot;step-num&quot;>01</span>
+        <div class=&quot;step-icon&quot;>🔍</div>
+        <div class=&quot;step-title&quot;>Browse &amp; Book</div>
+        <div class=&quot;step-desc&quot;>Search listings in your city. Filter by category, price, and availability. Request a rental.</div>
+      </div>
+      <div class=&quot;step-card&quot;>
+        <span class=&quot;step-num&quot;>02</span>
+        <div class=&quot;step-icon&quot;>🪪</div>
+        <div class=&quot;step-title&quot;>Verify Identity</div>
+        <div class=&quot;step-desc&quot;>Both parties verify via NADRA ID. Real names, real accountability — no anonymous transactions.</div>
+      </div>
+      <div class=&quot;step-card&quot;>
+        <span class=&quot;step-num&quot;>03</span>
+        <div class=&quot;step-icon&quot;>💰</div>
+        <div class=&quot;step-title&quot;>Pay into Escrow</div>
+        <div class=&quot;step-desc&quot;>Your funds are held securely until the item is returned in agreed condition.</div>
+      </div>
+      <div class=&quot;step-card&quot;>
+        <span class=&quot;step-num&quot;>04</span>
+        <div class=&quot;step-icon&quot;>📸</div>
+        <div class=&quot;step-title&quot;>Document &amp; Handoff</div>
+        <div class=&quot;step-desc&quot;>Photo-backed condition report created at handoff. No disputes, no grey areas.</div>
+      </div>
+      <div class=&quot;step-card&quot;>
+        <span class=&quot;step-num&quot;>05</span>
+        <div class=&quot;step-icon&quot;>✅</div>
+        <div class=&quot;step-title&quot;>Return &amp; Review</div>
+        <div class=&quot;step-desc&quot;>Item returned, escrow released, both parties leave verified reviews. Trust grows.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST FEATURES -->
+<section class=&quot;trust-section&quot; id=&quot;trust&quot;>
+  <div class=&quot;section-inner&quot;>
+    <p class=&quot;section-label&quot;>Why Amanat</p>
+    <h2 class=&quot;section-title&quot;>Trust is our<br>product</h2>
+    <p class=&quot;section-sub&quot;>Three pillars that solve the trust deficit holding Pakistan's sharing economy back.</p>
+    <div class=&quot;trust-grid&quot;>
+      <div class=&quot;trust-card featured&quot;>
+        <div>
+          <div class=&quot;trust-card-icon&quot;>🪪</div>
+          <div class=&quot;trust-card-title&quot;>NADRA-linked ID Verification</div>
+          <div class=&quot;trust-card-desc&quot;>Every user is verified against Pakistan's national identity database. No fake profiles. No anonymous bad actors. Your identity is your reputation.</div>
+        </div>
+        <div class=&quot;trust-stats&quot;>
+          <div>
+            <div class=&quot;trust-stat-num&quot;>0</div>
+            <div class=&quot;trust-stat-label&quot;>Unverified users</div>
+          </div>
+          <div>
+            <div class=&quot;trust-stat-num&quot;>100%</div>
+            <div class=&quot;trust-stat-label&quot;>ID-backed listings</div>
+          </div>
+        </div>
+      </div>
+      <div class=&quot;trust-card&quot;>
+        <div class=&quot;trust-card-icon&quot;>🔒</div>
+        <div class=&quot;trust-card-title&quot;>Escrow &amp; Security Deposits</div>
+        <div class=&quot;trust-card-desc&quot;>Funds are held safely until the item is returned in agreed condition. Owners get paid, renters get protected.</div>
+      </div>
+      <div class=&quot;trust-card&quot;>
+        <div class=&quot;trust-card-icon&quot;>📸</div>
+        <div class=&quot;trust-card-title&quot;>Digital Condition Reports</div>
+        <div class=&quot;trust-card-desc&quot;>Photo-backed, timestamped records of item condition created at every handoff. Disputes become a thing of the past.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIST AN ITEM -->
+<section class=&quot;list-section&quot; id=&quot;list&quot;>
+  <div class=&quot;section-inner&quot; style=&quot;display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;&quot;>
+    <div>
+      <p class=&quot;section-label&quot;>Earn from what you own</p>
+      <h2 class=&quot;section-title&quot;>Your idle gear<br>is <em style=&quot;font-style:italic; color:var(--sage);&quot;>earning money</em></h2>
+      <p class=&quot;section-sub&quot;>List your camera, tools, camping gear, or anything valuable. Earn passive income while helping your community access what they need.</p>
+      <div style=&quot;display: flex; flex-direction: column; gap: 16px; margin-top: 32px;&quot;>
+        <div style=&quot;display:flex; gap:14px; align-items:flex-start;&quot;>
+          <div style=&quot;width:40px;height:40px;background:var(--sage-pale);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;&quot;>💸</div>
+          <div><div style=&quot;font-weight:600;margin-bottom:4px;&quot;>15% platform fee</div><div style=&quot;font-size:14px;color:var(--muted);&quot;>We only earn when you earn. No listing fees.</div></div>
+        </div>
+        <div style=&quot;display:flex; gap:14px; align-items:flex-start;&quot;>
+          <div style=&quot;width:40px;height:40px;background:var(--sage-pale);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;&quot;>🛡️</div>
+          <div><div style=&quot;font-weight:600;margin-bottom:4px;&quot;>Security deposit protection</div><div style=&quot;font-size:14px;color:var(--muted);&quot;>Your item is protected by escrow before it leaves your hands.</div></div>
+        </div>
+        <div style=&quot;display:flex; gap:14px; align-items:flex-start;&quot;>
+          <div style=&quot;width:40px;height:40px;background:var(--sage-pale);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;&quot;>📣</div>
+          <div><div style=&quot;font-weight:600;margin-bottom:4px;&quot;>Featured listings available</div><div style=&quot;font-size:14px;color:var(--muted);&quot;>Boost visibility with paid placements for power users.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class=&quot;list-form&quot;>
+      <div class=&quot;id-verify-box&quot;>
+        <div class=&quot;id-verify-icon&quot;>🪪</div>
+        <div>
+          <div class=&quot;id-verify-title&quot;>NADRA Verification Required</div>
+          <div class=&quot;id-verify-sub&quot;>Identity linked to national records for full accountability</div>
+        </div>
+      </div>
+      <div class=&quot;form-group&quot;>
+        <label class=&quot;form-label&quot;>Item Title</label>
+        <input class=&quot;form-input&quot; placeholder=&quot;e.g. Sony A7III Camera + 50mm Lens&quot;>
+      </div>
+      <div class=&quot;form-row&quot;>
+        <div class=&quot;form-group&quot;>
+          <label class=&quot;form-label&quot;>Category</label>
+          <select class=&quot;form-select&quot;>
+            <option>📷 Camera &amp; Photo</option>
+            <option>🔧 Tools</option>
+            <option>⛺ Camping</option>
+            <option>💻 Electronics</option>
+            <option>👗 Fashion</option>
+            <option>🏕️ Outdoor</option>
+          </select>
+        </div>
+        <div class=&quot;form-group&quot;>
+          <label class=&quot;form-label&quot;>Daily Rate (PKR)</label>
+          <input class=&quot;form-input&quot; type=&quot;number&quot; placeholder=&quot;e.g. 2500&quot;>
+        </div>
+      </div>
+      <div class=&quot;form-group&quot;>
+        <label class=&quot;form-label&quot;>Description</label>
+        <textarea class=&quot;form-textarea&quot; placeholder=&quot;Describe your item, its condition, what's included...&quot;></textarea>
+      </div>
+      <div class=&quot;form-group&quot;>
+        <label class=&quot;form-label&quot;>Security Deposit (PKR)</label>
+        <input class=&quot;form-input&quot; type=&quot;number&quot; placeholder=&quot;Refundable deposit held in escrow&quot;>
+      </div>
+      <div class=&quot;upload-zone&quot; onclick=&quot;showToast('📸 Photo upload coming soon!')&quot;>
+        <span>📷</span>
+        Upload item photos (min. 3)
+        <div style=&quot;font-size:12px;margin-top:6px;color:var(--sage)&quot;>These form your digital condition report</div>
+      </div>
+      <br>
+      <button class=&quot;btn-primary&quot; style=&quot;width:100%;padding:16px;&quot; onclick=&quot;showToast('🎉 Listing submitted for review!')&quot;>Submit Listing</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class=&quot;footer-inner&quot;>
+    <div class=&quot;footer-top&quot;>
+      <div>
+        <div class=&quot;footer-logo&quot;>Amanat</div>
+        <div class=&quot;footer-tagline&quot;>Pakistan's trusted peer-to-peer rental marketplace. Access more, own less.</div>
+      </div>
+      <div>
+        <div class=&quot;footer-col-title&quot;>Marketplace</div>
+        <a class=&quot;footer-link&quot;>Browse All</a>
+        <a class=&quot;footer-link&quot;>List an Item</a>
+        <a class=&quot;footer-link&quot;>How it Works</a>
+        <a class=&quot;footer-link&quot;>Pricing</a>
+      </div>
+      <div>
+        <div class=&quot;footer-col-title&quot;>Trust</div>
+        <a class=&quot;footer-link&quot;>ID Verification</a>
+        <a class=&quot;footer-link&quot;>Escrow System</a>
+        <a class=&quot;footer-link&quot;>Condition Reports</a>
+        <a class=&quot;footer-link&quot;>Dispute Resolution</a>
+      </div>
+      <div>
+        <div class=&quot;footer-col-title&quot;>Company</div>
+        <a class=&quot;footer-link&quot;>About Us</a>
+        <a class=&quot;footer-link&quot;>Careers</a>
+        <a class=&quot;footer-link&quot;>Blog</a>
+        <a class=&quot;footer-link&quot;>Contact</a>
+      </div>
+    </div>
+    <div class=&quot;footer-bottom&quot;>
+      <span>© 2025 Amanat. All rights reserved.</span>
+      <span>Built with ❤️ for Pakistan</span>
+    </div>
+  </div>
+</footer>
+
+<!-- LISTING MODAL -->
+<div class=&quot;modal-overlay&quot; id=&quot;modal&quot; onclick=&quot;closeModal(event)&quot;>
+  <div class=&quot;modal&quot; id=&quot;modalContent&quot;>
+    <div class=&quot;modal-header&quot;>
+      <span class=&quot;modal-emoji&quot; id=&quot;modalEmoji&quot;>📷</span>
+      <div class=&quot;modal-title&quot; id=&quot;modalTitle&quot;>Item Name</div>
+      <div class=&quot;modal-owner&quot; id=&quot;modalOwner&quot;>Owner</div>
+    </div>
+    <div class=&quot;modal-body&quot;>
+      <div class=&quot;modal-price-row&quot;>
+        <div class=&quot;modal-price-big&quot; id=&quot;modalPrice&quot;>PKR 0 <small>/ day</small></div>
+        <div style=&quot;display:flex;align-items:center;gap:6px;font-size:14px;color:var(--muted)&quot;>🔒 Escrow protected</div>
+      </div>
+      <div class=&quot;modal-features&quot;>
+        <div class=&quot;modal-feature&quot;><span class=&quot;modal-feature-icon&quot;>🪪</span> NADRA-verified owner</div>
+        <div class=&quot;modal-feature&quot;><span class=&quot;modal-feature-icon&quot;>📸</span> Digital condition report at handoff</div>
+        <div class=&quot;modal-feature&quot; id=&quot;modalDeposit&quot;><span class=&quot;modal-feature-icon&quot;>💰</span> Security deposit: PKR 0</div>
+      </div>
+      <div class=&quot;date-row&quot;>
+        <div class=&quot;date-input-wrap&quot;>
+          <span class=&quot;date-label&quot;>From</span>
+          <input type=&quot;date&quot; class=&quot;date-input&quot; id=&quot;dateFrom&quot;>
+        </div>
+        <div class=&quot;date-input-wrap&quot;>
+          <span class=&quot;date-label&quot;>To</span>
+          <input type=&quot;date&quot; class=&quot;date-input&quot; id=&quot;dateTo&quot;>
+        </div>
+      </div>
+      <div class=&quot;modal-footer&quot;>
+        <button class=&quot;modal-close&quot; onclick=&quot;document.getElementById('modal').classList.remove('open')&quot;>Cancel</button>
+        <button class=&quot;modal-book&quot; onclick=&quot;bookItem()&quot;>Request to Book</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class=&quot;toast&quot; id=&quot;toast&quot;></div>
+
+<script>
+const listings = [
+  { id:1, emoji:'📷', title:'Sony A7III + 50mm Lens', cat:'Camera', owner:'Ahmed K., Karachi', price:2500, deposit:15000, rating:'4.9 ★', badge:'verified', bg:'#e8f0e9' },
+  { id:2, emoji:'🔧', title:'DeWalt Power Drill Set', cat:'Tools', owner:'Bilal R., Lahore', price:800, deposit:5000, rating:'4.8 ★', badge:'popular', bg:'#fdf0e8' },
+  { id:3, emoji:'💻', title:'MacBook Pro M2 16&quot;', cat:'Electronics', owner:'Sara M., Islamabad', price:4000, deposit:30000, rating:'5.0 ★', badge:'verified', bg:'#e8f0e9' },
+  { id:4, emoji:'⛺', title:'4-Person Camping Tent', cat:'Camping', owner:'Usman T., Karachi', price:1200, deposit:8000, rating:'4.7 ★', badge:'verified', bg:'#fdf0e8' },
+  { id:5, emoji:'📷', title:'DJI Mavic 3 Drone', cat:'Camera', owner:'Hina A., Lahore', price:3500, deposit:25000, rating:'4.9 ★', badge:'popular', bg:'#e8f0e9' },
+  { id:6, emoji:'👗', title:'Designer Sherwani Set (L)', cat:'Fashion', owner:'Zara K., Karachi', price:3000, deposit:20000, rating:'4.8 ★', badge:'verified', bg:'#fdf0e8' },
+  { id:7, emoji:'🎒', title:'Hiking Backpack 70L', cat:'Camping', owner:'Faisal B., Islamabad', price:600, deposit:4000, rating:'4.6 ★', badge:'verified', bg:'#e8f0e9' },
+  { id:8, emoji:'🔊', title:'JBL PA Speaker System', cat:'Electronics', owner:'Hamza N., Lahore', price:2200, deposit:12000, rating:'4.9 ★', badge:'popular', bg:'#fdf0e8' },
+];
+
+let currentCat = 'all';
+
+function renderListings(data) {
+  const grid = document.getElementById('listingsGrid');
+  grid.innerHTML = data.map(l => `
+    <div class=&quot;listing-card&quot; onclick=&quot;openModal(${l.id})&quot;>
+      <div class=&quot;listing-img&quot; style=&quot;background:${l.bg}&quot;>
+        ${l.emoji}
+        <span class=&quot;listing-badge ${l.badge === 'verified' ? 'badge-verified' : 'badge-popular'}&quot;>
+          ${l.badge === 'verified' ? '✓ Verified' : '🔥 Popular'}
+        </span>
+      </div>
+      <div class=&quot;listing-body&quot;>
+        <div class=&quot;listing-title&quot;>${l.title}</div>
+        <div class=&quot;listing-owner&quot;><span class=&quot;owner-dot&quot;></span>${l.owner}</div>
+        <div class=&quot;listing-footer&quot;>
+          <div class=&quot;listing-price&quot;>PKR ${l.price.toLocaleString()} <span>/ day</span></div>
+          <div class=&quot;listing-rating&quot;>⭐ ${l.rating}</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterListings(btn, cat) {
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  currentCat = cat;
+  const filtered = cat === 'all' ? listings : listings.filter(l => l.cat === cat);
+  renderListings(filtered);
+}
+
+function filterCat(cat) {
+  const btn = [...document.querySelectorAll('.filter-pill')].find(b => b.textContent.includes(cat));
+  if(btn) { filterListings(btn, cat); }
+  scrollTo('listings');
+}
+
+function doSearch() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = q ? listings.filter(l => l.title.toLowerCase().includes(q) || l.cat.toLowerCase().includes(q)) : listings;
+  renderListings(filtered);
+  scrollTo('listings');
+}
+
+function openModal(id) {
+  const l = listings.find(x => x.id === id);
+  document.getElementById('modalEmoji').textContent = l.emoji;
+  document.getElementById('modalTitle').textContent = l.title;
+  document.getElementById('modalOwner').textContent = '🪪 ' + l.owner;
+  document.getElementById('modalPrice').innerHTML = `PKR ${l.price.toLocaleString()} <small>/ day</small>`;
+  document.getElementById('modalDeposit').innerHTML = `<span class=&quot;modal-feature-icon&quot;>💰</span> Security deposit: PKR ${l.deposit.toLocaleString()}`;
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('dateFrom').value = today;
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal(e) {
+  if(e.target.id === 'modal') document.getElementById('modal').classList.remove('open');
+}
+
+function bookItem() {
+  document.getElementById('modal').classList.remove('open');
+  showToast('🎉 Booking request sent! Owner will confirm shortly.');
+}
+
+function setTab(btn) {
+  document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function scrollTo(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// Init
+renderListings(listings);
+
+// Set min date
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('dateFrom').min = today;
+document.getElementById('dateTo').min = today;
+</script>
+
+<script>
+  function openProto(){
+    var f = document.getElementById('protoFrame');
+    var blob = new Blob([f.getAttribute('srcdoc')], {type:'text/html'});
+    window.open(URL.createObjectURL(blob), '_blank');
+  }
+</script>
+</body>
+</html>
+"></iframe>
+      </div>
+      <p class="proto-note">Interactive prototype: scroll inside the frame, filter by category, and tap a listing.</p>
+
+      <h4>Beyond the screens</h4>
+      <p>Amanat went through early ideation, a pitch deck, business model canvas, and financial modeling alongside the UI work — so the interface decisions were made with the unit economics of a rental transaction in mind, not just the flow.</p>
+    </article>
+  </section>
+
+  <section id="writing">
+    <div class="section-head">
+      <h2>Writing</h2>
+      <span class="count">Selected articles</span>
+    </div>
+    <p style="max-width:60ch;color:#3a2c15;margin:0 0 26px;">Alongside design and freelance content work, I write long-form pieces on Medium — covering wellbeing, productivity, and technology for a general audience.</p>
+    <ul style="padding-left:0;list-style:none;margin:0 0 30px;">
+      <li style="border-top:1px solid var(--divider);padding:16px 0;">
+        <a href="https://medium.com/@syedaareejfatima223/mental-wellness-bf50d9eab60b" style="text-decoration:none;">
+          <div style="font-family:'Playfair Display', serif;font-size:19px;margin-bottom:4px;">Mental Wellness</div>
+          <div style="font-size:13px;color:var(--muted);">Medium — Nov 2025</div>
+        </a>
+      </li>
+      <li style="border-top:1px solid var(--divider);padding:16px 0;">
+        <a href="https://medium.com/@syedaareejfatima223/tips-to-boost-your-work-from-home-productivity-e7b284f4ef72" style="text-decoration:none;">
+          <div style="font-family:'Playfair Display', serif;font-size:19px;margin-bottom:4px;">Tips to Boost Your Work-From-Home Productivity</div>
+          <div style="font-size:13px;color:var(--muted);">Medium</div>
+        </a>
+      </li>
+      <li style="border-top:1px solid var(--divider);border-bottom:1px solid var(--divider);padding:16px 0;">
+        <a href="https://medium.com/@syedaareejfatima223/features-and-purposes-of-artificial-intelligence-94dd85af61f9" style="text-decoration:none;">
+          <div style="font-family:'Playfair Display', serif;font-size:19px;margin-bottom:4px;">Features and Purposes of Artificial Intelligence</div>
+          <div style="font-size:13px;color:var(--muted);">Medium</div>
+        </a>
+      </li>
+    </ul>
+    <p style="font-size:14px;"><a href="https://medium.com/@syedaareejfatima223" style="color:var(--deep-umber);">Read more on Medium →</a></p>
+  </section>
+
+  <section id="presentations">
+    <div class="section-head">
+      <h2>Presentations</h2>
+    </div>
+    <div class="case" style="padding-top:0;border-top:none;">
+      <div class="case-top" style="margin-bottom:10px;">
+        <div>
+          <h3 class="case-name" style="font-size:24px;">Amanat — Pitch Deck</h3>
+          <div class="case-role">Business model, market opportunity, and product walkthrough</div>
+        </div>
+      </div>
+      <p style="margin-bottom:10px;"><a href="https://gamma.app/docs/Amanat-j3jj4tgvnb5wzm2?mode=doc" style="color:var(--deep-umber);font-size:14px;">View presentation →</a></p>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head">
+      <h2>About</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-block">
+        <h4>Currently</h4>
+        <p>BS Computer Science at the Institute of Business Administration, Karachi, on a merit-based scholarship.</p>
+      </div>
+      <div class="about-block">
+        <h4>How I work</h4>
+        <ul>
+          <li>Design systems before screens</li>
+          <li>Prototype in HTML/React, not just static mockups</li>
+          <li>Treat business model and UI as one problem, not two</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Let's talk</h2>
+    <p>Open to design internships, freelance UI/UX work, and collaborators building early-stage products.</p>
+    <div class="contact-links">
+      <a href="mailto:syedaareejfatima223@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/syedaareej-fatima223/">LinkedIn</a>
+      <a href="https://medium.com/@syedaareejfatima223">Medium</a>
+    </div>
+    <p class="fine">Areej — UI/UX Design. Karachi.</p>
+  </div>
+</footer>
+
+</body>
+</html>
